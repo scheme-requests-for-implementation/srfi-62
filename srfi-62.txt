@@ -46,7 +46,6 @@ encounters another #;, which consumes & ignores the 'Y, and is then
 forced to proceed on to the 'Z to find a complete S-expression for the
 first #; to receive; this, too, is ignored, leaving only the closing
 parenthesis in the stream, which results in (LIST (QUOTE X)).
-This is, however, straightforwardly explained: the
 
 That is a fairly special case of nested S-expression comments.  Others
 are somewhat simpler for intuition to grasp immediately:
