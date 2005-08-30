@@ -84,7 +84,7 @@ proceeds on to the S-expression after that.  For example,
 Some examples of nested S-expression comments may appear confusing at
 first, but they are straightforwardly explained.  For instance,
 consider the text <tt>(list 'a #; #;'b 'c 'd)</tt>.  This reads as the
-list represented by <tt>(list (quote x) (quote d))</tt>.  Note that
+list represented by <tt>(list (quote a) (quote d))</tt>.  Note that
 both <tt>'b</tt> and <tt>'c</tt> seemed to 'disappear.'  The reason is
 simply that when the first <tt>#;</tt> causes the reader to read ahead
 in the input stream for the next S-expression, the reader encounters
