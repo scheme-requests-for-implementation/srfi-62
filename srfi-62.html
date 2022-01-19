@@ -1,23 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<html lang="en">
   <head>
     <title>SRFI 62: S-expression comments</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/srfi.css" type="text/css" />
+    <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
   </head>
 
   <body>
 
-<H1>Title</H1>
+<h1><a href="https://srfi.schemers.org/"><img class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" alt="SRFI surfboard logo" /></a>62: S-expression comments</h1>
 
-S-expression comments
+<p>by Taylor Campbell</p>
 
-<H1>Author</H1>
-
-Taylor Campbell
-
-<H1>Status</H1>
+<h2>Status</h2>
 
 <p>This SRFI is currently in <em>final</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+62+at+srfi+dotschemers+dot+org">srfi-62@<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-62">archive</a>.</p>
 <UL>
@@ -28,7 +25,7 @@ Taylor Campbell
 <LI>Final: 2005-07-21</LI>
 </UL>
 
-<H1>Abstract</H1>
+<h2>Abstract</h2>
 
 <p>
 This SRFI proposes a simple extension to Scheme's lexical syntax that
@@ -41,7 +38,7 @@ defines: both of these mechanisms comment out slices of text, not
 S-expressions.
 </p>
 
-<H1>Rationale</H1>
+<h2>Rationale</h2>
 
 <p>
 Line and block comments are useful for embedding textual commentary in
@@ -52,7 +49,7 @@ subsequently removing the comments and re-introducing the S-expressions
 themselves.
 </p>
 
-<H1>Informal specification</H1>
+<h2>Informal specification</h2>
 
 <p>
 A new octothorpe reader syntax character is defined, <tt>#\;</tt>, such
@@ -141,7 +138,7 @@ instance, the following are all errors:
 </ul>
 </p>
 
-<H1>Formal specification</H1>
+<h2>Formal specification</h2>
 
 <p>
 R5RS's formal syntax is modified as follows:
@@ -189,7 +186,7 @@ All of the new or modified rules are presented here:
 </pre>
 </p>
 
-<H1>Copyright</H1>
+<h2>Copyright</h2>
 
 <p>Copyright (C) 2004 Taylor Campbell.  All rights reserved.</p>
 
