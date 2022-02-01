@@ -1,47 +1,43 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN" "http://www.w3.org/TR/html.dtd">
+<html lang="en">
   <head>
     <title>SRFI 62: S-expression comments</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/srfi.css" type="text/css" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://srfi.schemers.org/srfi.css" rel="stylesheet" type="text/css" />
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png" />
   </head>
 
   <body>
 
-<H1>Title</H1>
+<h1><a href="https://srfi.schemers.org/"><img alt="SRFI surfboard logo" class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" /></a>62: S-expression comments</h1>
 
-S-expression comments
+<p>by Taylor Campbell</p>
 
-<H1>Author</H1>
-
-Taylor Campbell
-
-<H1>Status</H1>
+<h2>Status</h2>
 
 <p>This SRFI is currently in <em>final</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+62+at+srfi+dotschemers+dot+org">srfi-62@<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-62">archive</a>.</p>
-<UL>
+<ul>
 
-<LI>Received: <a href="https://srfi.schemers.org/srfi-62/srfi-62-1.1.txt">2005-01-04</a>
-<LI>Draft: 2005-01-03--2005-03-04
-<LI>Revised: <a href="https://srfi.schemers.org/srfi-62/srfi-62-1.3.txt">2005-02-27</a>
-<LI>Final: 2005-07-21</LI>
-</UL>
+<li>Received: <a href="https://srfi.schemers.org/srfi-62/srfi-62-1.1.txt">2005-01-04</a>
+</li><li>Draft: 2005-01-03--2005-03-04
+</li><li>Revised: <a href="https://srfi.schemers.org/srfi-62/srfi-62-1.3.txt">2005-02-27</a>
+</li><li>Final: 2005-07-21</li>
+</ul>
 
-<H1>Abstract</H1>
+<h2>Abstract</h2>
 
 <p>
 This SRFI proposes a simple extension to Scheme's lexical syntax that
 allows individual S-expressions to be made into comments, ignored by
 the reader.  This contrasts with the standard Lisp semicolon comments,
 which make the reader ignore the remainder of the line, and the
-slightly less common block comments, as <a
-href="https://srfi.schemers.org/srfi-30/srfi-30.html">SRFI 30</a>
+slightly less common block comments, as <a href="https://srfi.schemers.org/srfi-30/srfi-30.html">SRFI 30</a>
 defines: both of these mechanisms comment out slices of text, not
 S-expressions.
 </p>
 
-<H1>Rationale</H1>
+<h2>Rationale</h2>
 
 <p>
 Line and block comments are useful for embedding textual commentary in
@@ -52,15 +48,15 @@ subsequently removing the comments and re-introducing the S-expressions
 themselves.
 </p>
 
-<H1>Informal specification</H1>
+<h2>Informal specification</h2>
 
 <p>
 A new octothorpe reader syntax character is defined, <tt>#\;</tt>, such
 that the reader ignores the S-expression following the <tt>#;</tt> and
 proceeds on to the S-expression after that.  For example,
-<br>
+<br />
 </p>
-<table border=0 cellspacing=10 cellpadding=0>
+<table border="0" cellpadding="0" cellspacing="10">
   <tr>
     <td><tt>(+ 1 #;(* 2 3) 4)</tt></td>
     <td>-reads-&gt; <tt>(+ 1 4)</tt></td>
@@ -101,16 +97,16 @@ leaving only <tt>'d</tt>.
 <p>
 That is a fairly special case of nested S-expression comments.  Others
 are somewhat simpler for intuition to grasp immediately, such as:
-<br>
-<br>
+<br />
+<br />
 <tt>(list 'a #;(list 'b #;c 'd) 'e)</tt> -reads-&gt; <tt>(list (quote a) (quote e))</tt> -evals-&gt; <tt>(a e)</tt>
-<br>
-<br>
+<br />
+<br />
 There are also some other somewhat peculiar examples, such as in dotted
 lists and at the end of lists, which are still simple to grasp:
-<br>
-<br>
-<table border=0 cellspacing=10 cellpadding=0>
+<br />
+<br />
+<table border="0" cellpadding="0" cellspacing="10">
   <tr>
     <td><tt>'(a . #;b c)</tt></td>
     <td>-reads-&gt; <tt>(quote (a . c))</tt></td>
@@ -129,8 +125,8 @@ prefix, <tt>#;</tt>, must be followed by a complete S-expression (and
 after that either a complete S-expression or a special token such as a
 closing parenthesis, a dot in dotted lists, or the end of file); for
 instance, the following are all errors:
-<br>
-<br>
+<br />
+<br />
 <ul>
   <li><tt>(#;a . b)</tt></li>
   <li><tt>(a . #;b)</tt></li>
@@ -141,7 +137,7 @@ instance, the following are all errors:
 </ul>
 </p>
 
-<H1>Formal specification</H1>
+<h2>Formal specification</h2>
 
 <p>
 R5RS's formal syntax is modified as follows:
@@ -159,37 +155,37 @@ R5RS's formal syntax is modified as follows:
       <tt>&lt;vector&gt;</tt> non-terminals are replaced with the
       following rules, along with two auxiliary ones:
 <pre>
-  &lt;list&gt; ---> "(" &lt;datum&gt;* &lt;optional dot&gt; &lt;delimiter prefix&gt; ")"
-  &lt;vector&gt; ---> "#(" &lt;datum&gt;* &lt;delimiter prefix&gt; ")"
-  &lt;optional dot&gt; ---> &lt;empty&gt; | &lt;datum&gt; &lt;delimiter prefix&gt; "." &lt;datum&gt;
-  &lt;delimiter prefix&gt; ---> &lt;empty&gt; | "#;" &lt;datum&gt; &lt;delimiter prefix&gt;
+  &lt;list&gt; ---&gt; "(" &lt;datum&gt;* &lt;optional dot&gt; &lt;delimiter prefix&gt; ")"
+  &lt;vector&gt; ---&gt; "#(" &lt;datum&gt;* &lt;delimiter prefix&gt; ")"
+  &lt;optional dot&gt; ---&gt; &lt;empty&gt; | &lt;datum&gt; &lt;delimiter prefix&gt; "." &lt;datum&gt;
+  &lt;delimiter prefix&gt; ---&gt; &lt;empty&gt; | "#;" &lt;datum&gt; &lt;delimiter prefix&gt;
 </pre></li>
 </ul>
 The first datum in a <tt>&lt;commented datum&gt;</tt> is ignored
 semantically, as is any datum immediately following a <tt>#;</tt> token
 in a delimiter prefix.
-<br><br>
+<br /><br />
 All of the new or modified rules are presented here:
 <pre>
   7.1.1:
 
-    &lt;token&gt; ---> &lt;identifier&gt; | &lt;boolean&gt; | &lt;number&gt;
+    &lt;token&gt; ---&gt; &lt;identifier&gt; | &lt;boolean&gt; | &lt;number&gt;
         | &lt;character&gt; | &lt;string&gt;
         | "(" | ")" | "#(" | "'" | "`" | "," | ",@" | "." | "#;"
 
   7.1.2:
 
-    &lt;datum&gt; ---> &lt;simple datum&gt; | &lt;compound datum&gt;
+    &lt;datum&gt; ---&gt; &lt;simple datum&gt; | &lt;compound datum&gt;
         | &lt;commented datum&gt;
-    &lt;commented datum&gt; ---> "#;" &lt;datum&gt; &lt;datum&gt;
-    &lt;list&gt; ---> "(" &lt;datum&gt;* &lt;optional dot&gt; &lt;delimiter prefix&gt; ")"
-    &lt;vector&gt; ---> "#(" &lt;datum&gt;* &lt;delimiter prefix&gt; ")"
-    &lt;optional dot&gt; ---> &lt;empty&gt; | &lt;datum&gt; &lt;delimiter prefix&gt; "." &lt;datum&gt;
-    &lt;delimiter prefix&gt; ---> &lt;empty&gt; | "#;" &lt;datum&gt; &lt;delimiter prefix&gt;
+    &lt;commented datum&gt; ---&gt; "#;" &lt;datum&gt; &lt;datum&gt;
+    &lt;list&gt; ---&gt; "(" &lt;datum&gt;* &lt;optional dot&gt; &lt;delimiter prefix&gt; ")"
+    &lt;vector&gt; ---&gt; "#(" &lt;datum&gt;* &lt;delimiter prefix&gt; ")"
+    &lt;optional dot&gt; ---&gt; &lt;empty&gt; | &lt;datum&gt; &lt;delimiter prefix&gt; "." &lt;datum&gt;
+    &lt;delimiter prefix&gt; ---&gt; &lt;empty&gt; | "#;" &lt;datum&gt; &lt;delimiter prefix&gt;
 </pre>
 </p>
 
-<H1>Copyright</H1>
+<h2>Copyright</h2>
 
 <p>Copyright (C) 2004 Taylor Campbell.  All rights reserved.</p>
 
@@ -217,7 +213,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </p>
 
 
-    <hr>
-    <address>Editor: <a href="mailto:srfi minus editors at srfi dot schemers dot org">Mike Sperber</a></address>
+    <hr />
+    <address>Editor: <a href="mailto:srfi%20minus%20editors%20at%20srfi%20dot%20schemers%20dot%20org">Mike Sperber</a></address>
   </body>
 </html>
