@@ -54,7 +54,6 @@ themselves.
 A new octothorpe reader syntax character is defined, <tt>#\;</tt>, such
 that the reader ignores the S-expression following the <tt>#;</tt> and
 proceeds on to the S-expression after that.  For example,
-<br />
 </p>
 <table border="0" cellpadding="0" cellspacing="10">
   <tr>
@@ -97,15 +96,14 @@ leaving only <tt>'d</tt>.
 <p>
 That is a fairly special case of nested S-expression comments.  Others
 are somewhat simpler for intuition to grasp immediately, such as:
-<br />
-<br />
+</p>
+<p>
 <tt>(list 'a #;(list 'b #;c 'd) 'e)</tt> -reads-&gt; <tt>(list (quote a) (quote e))</tt> -evals-&gt; <tt>(a e)</tt>
-<br />
-<br />
+</p>
+<p>
 There are also some other somewhat peculiar examples, such as in dotted
 lists and at the end of lists, which are still simple to grasp:
-<br />
-<br />
+</p>
 <table border="0" cellpadding="0" cellspacing="10">
   <tr>
     <td><tt>'(a . #;b c)</tt></td>
@@ -116,7 +114,6 @@ lists and at the end of lists, which are still simple to grasp:
     <td>-reads-&gt; <tt>(quote (a . b))</tt></td>
   </tr>
 </table>
-</p>
 
 <p>
 Note, however, that any text that is invalid without S-expression
@@ -125,8 +122,7 @@ prefix, <tt>#;</tt>, must be followed by a complete S-expression (and
 after that either a complete S-expression or a special token such as a
 closing parenthesis, a dot in dotted lists, or the end of file); for
 instance, the following are all errors:
-<br />
-<br />
+</p>
 <ul>
   <li><tt>(#;a . b)</tt></li>
   <li><tt>(a . #;b)</tt></li>
@@ -140,6 +136,7 @@ instance, the following are all errors:
 
 <p>
 R5RS's formal syntax is modified as follows:
+</p>
 <ul>
   <li>In section 7.1.1, a <tt>#;</tt> option is added to the
       <tt>&lt;token&gt;</tt> non-terminal.</li>
@@ -160,11 +157,14 @@ R5RS's formal syntax is modified as follows:
   &lt;delimiter prefix&gt; ---&gt; &lt;empty&gt; | "#;" &lt;datum&gt; &lt;delimiter prefix&gt;
 </pre></li>
 </ul>
+<p>
 The first datum in a <tt>&lt;commented datum&gt;</tt> is ignored
 semantically, as is any datum immediately following a <tt>#;</tt> token
 in a delimiter prefix.
-<br /><br />
+</p>
+<p>
 All of the new or modified rules are presented here:
+</p>
 <pre>
   7.1.1:
 
